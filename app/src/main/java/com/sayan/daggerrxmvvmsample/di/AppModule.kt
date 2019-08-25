@@ -10,6 +10,6 @@ class AppModule {
     @Singleton
     @Provides
     internal fun provideSampleString(): String {
-        return "xyz"
+        return "xyzxxxx"
     }
 }

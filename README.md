@@ -1,5 +1,5 @@
 # DaggerRxMVVMSample
-This project demostrate the use of Dagger with RxJava, MVVM and unit test concepts together.
+This project demostrate the use of Dagger with RxJava, MVVM and unit customClass concepts together.
 
 ## Dagger setup steps in Android
 

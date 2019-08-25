@@ -2,6 +2,7 @@ package com.sayan.daggerrxmvvmsample.di
 
 import android.app.Application
 import com.sayan.daggerrxmvvmsample.BaseApplication
+import com.sayan.daggerrxmvvmsample.di.pojos.CustomClassModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -13,7 +14,8 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityBuildersModule::class,
-        AppModule::class
+        AppModule::class,
+        CustomClassModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
