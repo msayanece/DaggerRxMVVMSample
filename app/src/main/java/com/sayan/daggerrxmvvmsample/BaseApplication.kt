@@ -1,5 +1,6 @@
 package com.sayan.daggerrxmvvmsample
 
+import com.sayan.daggerrxmvvmsample.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 

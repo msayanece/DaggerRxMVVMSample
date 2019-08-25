@@ -1,8 +1,8 @@
-package com.sayan.daggerrxmvvmsample
+package com.sayan.daggerrxmvvmsample.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.sayan.daggerrxmvvmsample.R
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 

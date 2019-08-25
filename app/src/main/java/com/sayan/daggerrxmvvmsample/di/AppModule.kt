@@ -1,4 +1,4 @@
-package com.sayan.daggerrxmvvmsample
+package com.sayan.daggerrxmvvmsample.di
 
 import dagger.Module
 import dagger.Provides
