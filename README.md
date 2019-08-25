@@ -166,3 +166,107 @@ class MainActivity : DaggerAppCompatActivity() {
 ```
 * Now Run your application and check the Toast is being shown.
 
+
+
+
+
+## Using Dagger in Custom Plain class
+In this section we will see how to implement DI in a custom class by using Field Injection and Constructor Injection
+
+### SECTION 1 - Create custom classes
+Here we will see how to inject other DI into a field variable
+
+* Create a plain class like below...
+```
+class CustomClass {
+    @Inject
+    lateinit var testString: String
+
+    fun getSampleString(): String{
+        return testString
+    }
+}
+```
+* Here _testString_ is injecting from the String provider written in the AppModule DI
+* Provide your CustomClass in your AppModule (or any module, just make sure the module must be mentioned in the AppComponent/Any-Component) like this...
+```
+    @Singleton
+    @Provides
+    internal fun provideTestClass(testString: String): CustomClass {
+        val test = CustomClass()
+        test.testString = testString
+        return test
+    }
+```
+* Here the String parameter will be provided by the DI automatically as the String provider is already defined in the moduile.
+* In this provider method, at first we create an object of the CustomClass and then initialize the testString field-variable and return the object.
+* We can test this custom class DI in MainActivity like this...
+```
+    @Inject
+    lateinit var customClass: CustomClass
+    
+    ...
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        
+        ...
+        
+        if (::customClass.isInitialized)
+            Toast.makeText(
+                this,
+                "sampleText==> ${customClass.getSampleString()}",
+                Toast.LENGTH_LONG).show()
+                
+        ...
+        
+    }
+```
+
+
+### SECTION 2 - Create another custom classes which is dependant of the above custom class
+Here we will see how to inject other DI into the Constructor
+
+* Create a DependantCustomClass like below...
+```
+class DependantCustomClass @Inject constructor(private val customClass: CustomClass) {
+    fun getCustomClassObject(): CustomClass{
+        return customClass
+    }
+}
+```
+* Here _@Inject_ annotation to a constructor will inject all the constructor parameters by DI
+* For providing the DI use following in your module...
+```
+    @Singleton
+    @Provides
+    internal fun provideDependantTestClass(customClass: CustomClass): DependantCustomClass {
+        return DependantCustomClass(customClass)
+    }
+```
+* Here the CustomClass parameter will be provided by the DI automatically because we have already written the provide method of CustomClass in the module
+* We can test this custom class DI in MainActivity like this...
+```
+    @Inject
+    lateinit var dependantCustomClass: DependantCustomClass
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        
+        ...
+    
+        if (::dependantCustomClass.isInitialized)
+            Toast.makeText(
+                this,
+                "sampleText==> ${dependantCustomClass.getCustomClassObject().getSampleString()}",
+                Toast.LENGTH_LONG).show()
+        
+        ...
+        
+    }
+```
+
+* __SOME ADDITIONAL GUIDE__: 
+You may create a separate package (named di) for collecting all the related classes/files of DI. Please check the project package-structure for more details.
+
+
+
+
