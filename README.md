@@ -1,6 +1,10 @@
 # DaggerRxMVVMSample
 This project demostrate the use of Dagger with RxJava, MVVM and unit customClass concepts together.
 
+## Contents
+* [Dagger setup steps in Android](https://github.com/msayanece/DaggerRxMVVMSample#dagger-setup-steps-in-android)
+* [Using Dagger in Custom Plain class](https://github.com/msayanece/DaggerRxMVVMSample#using-dagger-in-custom-plain-class)
+
 ## Dagger setup steps in Android
 
 ### STEP 1
